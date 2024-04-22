@@ -9,11 +9,6 @@ class DocumentoVerificacion extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'documento',
-        'descripcion',
-        'nombres',
-        'fecha',
-        'estado',
         'operacion_id',
         'unidad_id',
     ];
@@ -24,5 +19,9 @@ class DocumentoVerificacion extends Model
     public function unidad()
     {
         return $this->belongsTo(Unidad::class);
+    }
+    public function metas()
+    {
+        return $this->hasMany(MetaDocumento::class);
     }
 }

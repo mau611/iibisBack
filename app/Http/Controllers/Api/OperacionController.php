@@ -10,9 +10,11 @@ class OperacionController extends Controller
 {
     public function index($gestion)
     {
-        $operaciones = ($gestion == "Todos" ?
-            Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->orderBy('gestion', 'asc')->get() :
-            Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->orderBy('gestion', 'asc')->where('gestion', $gestion)->get());
+        $operaciones = (
+            $gestion == "Todos" ?
+            Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->get() :
+            Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->where('gestion', $gestion)->get()
+        );
         return $operaciones;
     }
     public function store(Request $request)
