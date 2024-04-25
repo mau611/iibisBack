@@ -12,6 +12,6 @@ class ActividadInvestigacion extends Model
 
     public function subactividades()
     {
-        return $this->hasMany(Subactividad::class);
+        return $this->hasMany(Subactividad::class)->with('operaciones');
     }
 }

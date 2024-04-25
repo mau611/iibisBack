@@ -16,6 +16,6 @@ class Subactividad extends Model
     }
     public function operaciones()
     {
-        return $this->hasMany(Operacion::class);
+        return $this->hasMany(Operacion::class)->with('documentosVerificacion');
     }
 }
