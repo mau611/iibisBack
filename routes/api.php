@@ -21,3 +21,7 @@ Route::controller(ReportesController::class)->group(function () {
     Route::get('/detalle_operaciones/{gestion}', 'detalleOperaciones');
     Route::get('/actividades_investigacion/{gestion}/{actividad}', 'actividadesInvestigacion');
 });
+
+Route::get('/iibis_file/{nombreArchivo}', function ($nombreArchivo) {
+    return asset("storage/documentos_verificacion/$nombreArchivo");
+});

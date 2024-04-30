@@ -13,7 +13,7 @@ class ReportesController extends Controller
     public function detalleOperaciones($gestion)
     {
         $query = Operacion::query()->with('documentosVerificacion', 'metas');
-        return $gestion !== 'Todos' ? $query->where('gestion', $gestion)->get() : $query->get();
+        return $gestion !== 'Todos' ? $query->where('gestion', $gestion)->paginate(10) : $query->paginate(10);
     }
 
     public function actividadesInvestigacion($gestion, $actividad)

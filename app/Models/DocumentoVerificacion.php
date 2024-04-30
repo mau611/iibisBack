@@ -24,4 +24,8 @@ class DocumentoVerificacion extends Model
     {
         return $this->hasMany(MetaDocumento::class);
     }
+    public function archivosVerificacion()
+    {
+        return $this->hasMany(ArchivoVerificacion::class);
+    }
 }

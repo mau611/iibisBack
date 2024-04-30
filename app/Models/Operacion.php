@@ -43,7 +43,7 @@ class Operacion extends Model
     }
     public function documentosVerificacion()
     {
-        return $this->hasMany(DocumentoVerificacion::class)->with('unidad')->with('metas');
+        return $this->hasMany(DocumentoVerificacion::class)->with('unidad')->with('metas')->with('archivosVerificacion');
     }
     public function metas()
     {
