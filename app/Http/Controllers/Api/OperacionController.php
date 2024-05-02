@@ -12,8 +12,8 @@ class OperacionController extends Controller
     {
         $operaciones = (
             $gestion == "Todos" ?
-            Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->paginate(5) :
-            Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->where('gestion', $gestion)->paginate(5)
+            Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->get() :
+            Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->where('gestion', $gestion)->get()
         );
         return $operaciones;
     }
