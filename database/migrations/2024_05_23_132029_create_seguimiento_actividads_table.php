@@ -12,13 +12,12 @@ return new class extends Migration {
     {
         Schema::create('seguimiento_actividads', function (Blueprint $table) {
             $table->id();
-            $table->string('estado');
-            $table->integer('porcentajeAvance');
-            $table->double('montoEjecutado');
-            $table->integer('meta');
-            $table->string('observacion');
-            $table->boolean('modificar');
-            $table->string('documento');
+            $table->string('estado')->nullable();
+            $table->integer('porcentajeAvance')->nullable();
+            $table->double('montoEjecutado')->nullable();
+            $table->integer('meta')->nullable();
+            $table->string('observacion')->nullable();
+            $table->boolean('modificar')->nullable();
             $table->foreignId('actividad_id')->constrained();
             $table->timestamps();
         });

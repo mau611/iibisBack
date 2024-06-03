@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DocSegActividad extends Model
 {
     use HasFactory;
+    public function seguimiento()
+    {
+        return $this->belongsTo(SeguimientoActividad::class);
+    }
 }

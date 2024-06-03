@@ -12,13 +12,12 @@ return new class extends Migration {
     {
         Schema::create('seguimiento_gestions', function (Blueprint $table) {
             $table->id();
-            $table->string('estado');
-            $table->integer('porcentajeAvance');
-            $table->double('montoEjecutado');
-            $table->integer('meta');
-            $table->string('observacion');
-            $table->boolean('modificar'); //(si,no)
-            $table->string('documento');
+            $table->string('estado')->nullable();
+            $table->integer('porcentajeAvance')->nullable();
+            $table->double('montoEjecutado')->nullable();
+            $table->integer('meta')->nullable();
+            $table->string('observacion')->nullable();
+            $table->boolean('modificar')->nullable(); //(si,no)
             $table->foreignId('proyecto_iibismed_id')->constrained();
             $table->timestamps();
         });

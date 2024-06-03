@@ -8,4 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class Actividad extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'actividad',
+        'meta',
+        'indicador',
+        'fuenteVerificacion',
+        'inicio',
+        'fin',
+        'peso',
+        'investigador_id',
+        'componente_id'
+    ];
+
+    public function investigador()
+    {
+        return $this->belongsTo(Investigador::class);
+    }
+    public function componente()
+    {
+        return $this->belongsTo(Componente::class);
+    }
+    public function seguimiento()
+    {
+        return $this->hasOne(SeguimientoActividad::class)->with('documentos');
+    }
+    public function documentos()
+    {
+        return $this->hasMany(ActividadDocumento::class);
+    }
 }

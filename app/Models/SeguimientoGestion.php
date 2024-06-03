@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SeguimientoGestion extends Model
 {
     use HasFactory;
+    public function documentos()
+    {
+        return $this->hasMany(DocSegGestion::class);
+    }
 }

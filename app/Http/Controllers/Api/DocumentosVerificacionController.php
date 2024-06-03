@@ -38,7 +38,7 @@ class DocumentosVerificacionController extends Controller
         foreach ($files as $file) {
             $archivoVerificacion = new ArchivoVerificacion();
             $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('public/documentos_verificacion', $filename);
+            $path = $file->storeAs('documentos_verificacion', $filename, 'public');
             $savedFiles[] = [
                 'original_name' => $file->getClientOriginalName(),
                 'stored_name' => $filename,
