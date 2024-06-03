@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Investigador;
 use App\Models\Operacion;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,11 @@ class OperacionController extends Controller
             Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->get() :
             Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->where('gestion', $gestion)->get()
         );
+        return $operaciones;
+    }
+    public function operacionesInvestigador($invId)
+    {
+        $operaciones = Operacion::where('investigador_id', $invId)->with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->get();
         return $operaciones;
     }
     public function store(Request $request)
