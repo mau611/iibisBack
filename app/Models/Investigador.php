@@ -16,6 +16,10 @@ class Investigador extends Model
         'celular',
         'fechaNacimiento'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function datosIibismed()
     {
         return $this->hasMany(DatosIibismed::class);

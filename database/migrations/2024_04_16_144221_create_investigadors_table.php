@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('correo')->unique();
             $table->string('celular');
             $table->date('fechaNacimiento');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
