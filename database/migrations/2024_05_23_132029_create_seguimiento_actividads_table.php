@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->integer('meta')->nullable();
             $table->string('observacion')->nullable();
             $table->boolean('modificar')->nullable();
+            $table->integer('periodo')->nullable();
             $table->foreignId('actividad_id')->constrained();
             $table->timestamps();
         });

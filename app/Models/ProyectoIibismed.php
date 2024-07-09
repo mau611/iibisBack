@@ -32,14 +32,14 @@ class ProyectoIibismed extends Model
     }
     public function componentes()
     {
-        return $this->hasMany(Componente::class);
+        return $this->hasMany(Componente::class)->with('actividades')->with('investigador');
     }
     public function metasPeriodo()
     {
         return $this->hasMany(MetaPeriodoIibismed::class);
     }
-    public function seguimiento()
+    public function seguimientos()
     {
-        return $this->hasOne(SeguimientoGestion::class)->with('documentos');
+        return $this->hasMany(SeguimientoGestion::class)->with('documentos');
     }
 }

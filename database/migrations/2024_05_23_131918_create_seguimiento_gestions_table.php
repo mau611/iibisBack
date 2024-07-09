@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->integer('meta')->nullable();
             $table->string('observacion')->nullable();
             $table->boolean('modificar')->nullable(); //(si,no)
+            $table->integer('periodo')->nullable();
             $table->foreignId('proyecto_iibismed_id')->constrained();
             $table->timestamps();
         });

@@ -20,9 +20,9 @@ class DocumentoVerificacion extends Model
     {
         return $this->belongsTo(Unidad::class);
     }
-    public function metas()
+    public function meta()
     {
-        return $this->hasMany(MetaDocumento::class);
+        return $this->hasOne(MetaDocumento::class);
     }
     public function archivosVerificacion()
     {

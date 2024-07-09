@@ -18,9 +18,10 @@ class OperacionController extends Controller
         );
         return $operaciones;
     }
-    public function operacionesInvestigador($invId)
+    public function operacionesInvestigador($invId, $gestion)
     {
-        $operaciones = Operacion::where('investigador_id', $invId)->with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->get();
+        $operaciones = Operacion::where('investigador_id', $invId)->where('gestion', $gestion)->with('investigador')->with('documentosVerificacion')->with('metas')->with('tipo')->orderBy('gestion', 'asc')->get();
+
         return $operaciones;
     }
     public function store(Request $request)
@@ -45,7 +46,7 @@ class OperacionController extends Controller
     }
     public function show(string $id)
     {
-        $operacion = Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->find($id);
+        $operacion = Operacion::with('investigador')->with('documentosVerificacion')->with('metas')->with('objetivoEspecifico')->find($id);
         return $operacion;
     }
     public function update(Request $request, string $id)

@@ -26,12 +26,12 @@ class ProyectoSispoa extends Model
     {
         return $this->belongsTo(Investigador::class);
     }
-    public function tipoProyectoOperacion()
+    public function tipo()
     {
         return $this->belongsTo(Tipo::class);
     }
     public function proyectos()
     {
-        return $this->hasMany(ProyectoIibismed::class)->with('componentes');
+        return $this->hasMany(ProyectoIibismed::class)->with('componentes')->with('seguimientos');
     }
 }
