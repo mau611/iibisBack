@@ -28,9 +28,9 @@ class Actividad extends Model
     {
         return $this->belongsTo(Componente::class);
     }
-    public function seguimiento()
+    public function seguimientos()
     {
-        return $this->hasOne(SeguimientoActividad::class)->with('documentos');
+        return $this->hasMany(SeguimientoActividad::class)->with('documentos');
     }
     public function documentos()
     {

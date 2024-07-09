@@ -23,7 +23,12 @@ class SeguimientoController extends Controller
     public function storeSeguimientoActividad(Request $request, $actividadId)
     {
         $seguimientoActividad = new SeguimientoActividad();
+        $seguimientoActividad->estado = $request->estado;
         $seguimientoActividad->porcentajeAvance = $request->porcentajeAvance;
+        $seguimientoActividad->meta = $request->meta;
+        $seguimientoActividad->observacion = $request->observacion;
+        $seguimientoActividad->modificar = $request->modificar;
+        $seguimientoActividad->periodo = $request->periodo;
         $seguimientoActividad->actividad_id = $request->id;
         $seguimientoActividad->save();
         return response()->json([
@@ -35,7 +40,12 @@ class SeguimientoController extends Controller
     public function storeSeguimientoGestion(Request $request, $gestionId)
     {
         $seguimiento = new SeguimientoGestion();
+        $seguimiento->estado = $request->estado;
         $seguimiento->porcentajeAvance = $request->porcentajeAvance;
+        $seguimiento->meta = $request->meta;
+        $seguimiento->observacion = $request->observacion;
+        $seguimiento->modificar = $request->modificar;
+        $seguimiento->periodo = $request->periodo;
         $seguimiento->proyecto_iibismed_id = $request->id;
         $seguimiento->save();
         return response()->json([

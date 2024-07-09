@@ -12,10 +12,11 @@ return new class extends Migration {
     {
         Schema::create('documento_verificacions', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
-            $table->string('nombres');
-            $table->date('fecha');
-            $table->string('estado');
+            $table->string('descripcion')->nullable();
+            $table->string('nombres')->nullable();
+            $table->date('fecha')->nullable();
+            $table->string('estado')->nullable();
+            $table->integer('periodo')->nullable();
             $table->foreignId('operacion_id')->constrained();
             $table->foreignId('unidad_id')->constrained();
             $table->timestamps();

@@ -33,7 +33,7 @@ class Operacion extends Model
     {
         return $this->belongsTo(Tipo::class);
     }
-    public function ObjetivoEspecifico()
+    public function objetivoEspecifico()
     {
         return $this->belongsTo(ObjetivoEspecifico::class);
     }
@@ -43,7 +43,7 @@ class Operacion extends Model
     }
     public function documentosVerificacion()
     {
-        return $this->hasMany(DocumentoVerificacion::class)->with('unidad')->with('metas')->with('archivosVerificacion');
+        return $this->hasMany(DocumentoVerificacion::class)->with('unidad')->with('meta')->with('archivosVerificacion');
     }
     public function metas()
     {

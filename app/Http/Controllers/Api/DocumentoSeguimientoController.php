@@ -43,7 +43,7 @@ class DocumentoSeguimientoController extends Controller
         }
         return response()->json(['message' => 'Files uploaded successfully'], 200);
     }
-    public function storeDocumentoSeguimientoGestion(Request $request, $gestionId)
+    public function storeDocumentoSeguimientoGestion(Request $request, $seguimientoId)
     {
         $files = $request->file('files');
         if (!$files) {
@@ -60,7 +60,7 @@ class DocumentoSeguimientoController extends Controller
                 'path' => $path,
             ];
             $documentoSeguimiento->nombre = $filename;
-            $documentoSeguimiento->seguimiento_gestion_id = $gestionId;
+            $documentoSeguimiento->seguimiento_gestion_id = $seguimientoId;
             $documentoSeguimiento->save();
         }
         return response()->json(['message' => 'Files uploaded successfully'], 200);

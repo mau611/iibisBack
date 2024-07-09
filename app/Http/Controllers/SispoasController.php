@@ -21,6 +21,20 @@ class SispoasController extends Controller
         return $sispoasInvestigador;
     }
 
+    public function getProyectosByInvestigadorAndGestion($invId, $gestion)
+    {
+        $sispoasInvestigador = ProyectoSispoa::where('investigador_id', $invId)
+            ->with([
+                'proyectos' => function ($query) use ($gestion) {
+                    $query->whereYear('inicioGestion', $gestion);
+                }
+            ])
+            ->with('investigador')
+            ->with('tipo')
+            ->get();
+        return $sispoasInvestigador;
+    }
+
     public function sispoas()
     {
         $sispoas = ProyectoSispoa::with('proyectos')->get();

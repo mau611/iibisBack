@@ -17,7 +17,7 @@ class Componente extends Model
     ];
     public function actividades()
     {
-        return $this->hasMany(Actividad::class);
+        return $this->hasMany(Actividad::class)->with('investigador')->with('seguimientos');
     }
     public function investigador()
     {

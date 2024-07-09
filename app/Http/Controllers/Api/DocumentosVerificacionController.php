@@ -20,6 +20,7 @@ class DocumentosVerificacionController extends Controller
         $documentoVerificacion = new DocumentoVerificacion();
         $documentoVerificacion->descripcion = $request->descripcion;
         $documentoVerificacion->operacion_id = $request->operacionId;
+        $documentoVerificacion->periodo = $request->periodo;
         $documentoVerificacion->unidad_id = $request->unidadId;
         $documentoVerificacion->save();
         $metaDocumento = new MetaDocumento();
