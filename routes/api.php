@@ -43,6 +43,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::controller(SeguimientoController::class)->group(function () {
         Route::post('/seguimiento_actividad/{actividadId}', 'storeSeguimientoActividad');
         Route::post('/seguimiento_gestion/{gestionId}', 'storeSeguimientoGestion');
+        Route::post('/habilitar_seguimiento', 'storeHabilitarSeguimiento');
+        Route::get('periodos_habilitados/{gestion}', 'getSeguimientoPeriodosHabilitados');
+        Route::get('periodo/{gestion}', 'getPeriodoHabilitado');
     });
 
     Route::controller(DocumentoSeguimientoController::class)->group(function () {
