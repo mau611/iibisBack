@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\HabilitarSeguimiento;
 use App\Models\SeguimientoActividad;
 use App\Models\SeguimientoGestion;
 use Illuminate\Http\Request;
@@ -52,6 +53,59 @@ class SeguimientoController extends Controller
             'message' => 'Seguimiento creado exitosamente',
             'seguimientoActividad' => $seguimiento,
         ], 201);
+    }
+
+    public function storeHabilitarSeguimiento(Request $request)
+    {
+        try {
+            if ($request->habilitado) {
+                HabilitarSeguimiento::where('gestion', $request->gestion)
+                    ->where('habilitado', true)
+                    ->update(['habilitado' => false]);
+            }
+            $existe = HabilitarSeguimiento::where('periodo', $request->periodo)
+                ->where('gestion', $request->gestion)
+                ->exists();
+            if ($existe) {
+                $habilitado = HabilitarSeguimiento::where('periodo', $request->periodo)->where('gestion', $request->gestion)->first();
+                if ($habilitado->habilitado !== $request->habilitado) {
+                    $habilitado->habilitado = $request->habilitado;
+                    $habilitado->save();
+                    return response()->json([
+                        'message' => 'Habilitación modificada exitosamente',
+                        'habilitado' => $habilitado,
+                    ], 201);
+                }
+                return response()->json([
+                    'error' => 'Ya existe una habilitación para este periodo y gestión.',
+                ], 409);
+            }
+            $habilitacion = new HabilitarSeguimiento();
+            $habilitacion->periodo = $request->periodo;
+            $habilitacion->gestion = $request->gestion;
+            $habilitacion->habilitado = $request->habilitado;
+            $habilitacion->save();
+            return response()->json([
+                'message' => 'Habilitación creada exitosamente',
+                'habilitacion' => $habilitacion,
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Error al crear la habilitación',
+                'details' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function getSeguimientoPeriodosHabilitados($gestion)
+    {
+        $habilitados = HabilitarSeguimiento::where('gestion', $gestion)->get();
+        return $habilitados;
+    }
+    public function getPeriodoHabilitado($gestion)
+    {
+        $habilitado = HabilitarSeguimiento::where('gestion', $gestion)->where('habilitado', true)->first();
+        return $habilitado->periodo;
     }
 
     /**
